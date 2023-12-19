@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import ToDo from "./ToDo";
+import "./App.css"
+
 
 function App() {
+  let [value,setValue] = useState("")
+  let [record,setRecode] = useState([])
+  function change(e){
+    setValue(e.target.value)
+  }
+  function go(){
+    setRecode([...record,value])
+    setValue("")
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <div>
+        <input type="text" value={value} onChange={change}></input>
+      </div>
+      <button onClick={go}>추가</button>
+      <ToDo record = {record} setRecode = {setRecode}></ToDo>
     </div>
   );
 }
